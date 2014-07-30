@@ -1,0 +1,19 @@
+<header class="navbar navbar-fixed-top navbar-inverse" id="nav">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="row" >
+       <div class="col-md-4">
+      <%= link_to image_tag("gs_logo_white_on_black.jpg", alt: "Game Swap", class: "logo_image"), '#' %>
+      </div>
+      <div class="col-md-8">
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Home",    root_path %></li>
+          <li><%= link_to "Help",    help_path %></li>
+          <li><%= link_to "Sign in", signup_path %></li>
+        </ul>
+      </nav>
+      </div>
+    </div>
+  </div>
+</header>
