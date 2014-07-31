@@ -1,4 +1,23 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<!-- <a href="#" onclick="toggle_visibility('signup');">Don't have an account? Sign up here.</a> -->
+<div >
+  <h1>Join the game trade network</h1>
+  <h4>Have access to games unavailable in stores, Or put your games up for sale and name your price.</h4>
+  <%= form_for(@user, :html => { :class => "pure-form pure-form-stacked"} ) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <span class="label label-warning">minimum 6 characters</span>
+
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation %>
+
+    <%= f.submit "Sign up for Game Swap!", class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>
