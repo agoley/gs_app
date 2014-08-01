@@ -2,17 +2,33 @@
   <div class="navbar-inner">
     <div class="container">
       <div class="row" >
-       <div class="col-md-4">
-      <%= link_to image_tag("Logo_W.png", alt: "Game Swap", class: "logo_image"), '#' %>
-      </div>
-      <div class="col-md-8">
-      <nav>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Home",    root_path %></li>
-          <li><%= link_to "Help",    help_path %></li>
-          <li><%= link_to "Sign up", signup_path %></li>
-        </ul>
-      </nav>
+        <div class="col-md-4">
+          <%= link_to image_tag("Logo_W.png", alt: "Game Swap", class: "logo_image"), root_path %>
+        </div>
+        <div class="col-md-8">
+          <nav>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to "Home",    root_path %></li>
+              <li><%= link_to "Help",    help_path %></li>
+              <li style="padding-left: 20px">
+                <div class="btn-group" style="padding-top: 10px;">
+  		  <button type="button" class="btn btn-success">
+		     <span class="glyphicon glyphicon-user"></span>
+	             <%= link_to " Sign in", '#', { :class => "signin_link" } %>  
+                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+    		    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+  		  </button>
+  		  <ul class="dropdown-menu" role="menu">
+    		    <li><a href="#">Sign in</a></li>
+                    <li class="divider"></li>
+    		    <li><%= link_to "Sign up", signup_path %></li>
+ 		  </ul>
+                </div>
+	      </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
