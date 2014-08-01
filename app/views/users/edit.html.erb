@@ -1,0 +1,57 @@
+<% provide(:title, "Edit user") %>
+<%= render 'shared/error_messages' %>
+<h4><strong>Personal</strong> information</h4>
+<div class="container">
+  <hr class="divider"></hr>
+  <%= form_for(@user, :html => { :class => "form-horizontal" } ) do |f| %>
+    <div class="form-group">
+      <%= f.label :name, :class => "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, :class => "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :email, :class => "form-control", :placeholder => "Email" %>
+      </div>
+    </div>
+      
+    <div class="form-group">  
+      <%= f.label :password, :class => "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Confirm Password", :class => "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirm" %>
+      </div>
+    </div>
+   
+    <% if current_user.admin? %>  
+      <div class="form-group">
+        <div class="col-sm-offset-2 sm-10">    
+          <%= f.label :admin, "Admin?"  %>
+          <%= f.check_box :admin, :value => 1, :checked => @user.admin? %>
+        </div>   
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 sm-10">
+        <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-offset-1 sm-10"> 
+      <%= gravatar_for @user %>
+      <a href="http://gravatar.com/emails">change</a>
+    </div>
+  </div>
+</div>

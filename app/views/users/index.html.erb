@@ -1,0 +1,12 @@
+<% provide(:title, 'All users') %>
+<h3><strong>Leading</strong> game swappers</h3>
+<h5>Here will be a leaderboard table with users ranked by their "Swap pts" earned by selling games, advertising, and verifying</h5>
+<h5>Also admins will be able to delete users from this board</h5>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+<%= will_paginate %>
