@@ -13,7 +13,10 @@
 
     <%= f.label :password %>
     <%= f.password_field :password %>
-    <span class="label label-warning">minimum 6 characters</span>
+    <span class="label label-warning">
+      <span class="glyphicon glyphicon-info-sign"></span>
+       minimum 6 characters
+    </span>
 
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %>
