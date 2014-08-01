@@ -6,6 +6,16 @@
   box-sizing: border-box;
 }
 
+a.signin_link {
+  color: white;
+}
+
+/* mouse over link */
+a.signin_link:hover {
+    color: white;
+    text-decoration: none;
+}
+
 #error_explanation {
   color: #f00;
   ul {
