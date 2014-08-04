@@ -54,6 +54,7 @@ group :test do
 end
 
 group :production do
+ gem 'puma'
 end
 
 ruby "2.0.0"
