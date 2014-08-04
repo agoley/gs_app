@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-sass'
+gem 'jquery-rails', "~> 2.3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
@@ -41,7 +43,6 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'mysql2'
 gem 'minitest'
-gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
