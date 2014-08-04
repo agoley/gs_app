@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get 'games/new'
   get 'users/new'
   resources :users
+  resources :games
   resources :sessions, only: [:new, :create, :destroy]
   root 'static_pages#home'
   match '/signin', to: 'sessions#new', via: 'get'
