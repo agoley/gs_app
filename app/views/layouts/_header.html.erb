@@ -11,6 +11,11 @@
               <li><%= link_to "Home",    root_path %></li>
               <li><%= link_to "Help",    help_path %></li>
               <li><%= link_to "Leaderboard",  users_path %><li>
+	      <li style="padding-top: 10px; padding-left: 15px"><button type="button" class="btn btn-success">
+		    <%= link_to "Upload Game", upload_path, {:class => "signin_link" } %>
+		    <span class="glyphicon glyphicon-cloud-upload"></span>
+		    </button>
+              </li>
               <li style="padding-left: 20px">
 	        <% if signed_in? %>
                   <div class="btn-group" style="padding-top: 10px;">

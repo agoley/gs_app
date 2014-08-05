@@ -1,2 +1,79 @@
-<h1>Games#new</h1>
-<p>Find me in app/views/games/new.html.erb</p>
+<% provide(:title, 'Upload') %>
+<h1>Upload your used or new games <small>here you can put your games on display for the 
+    world to see, name your price then layback while you
+    recieve offers.</small></h1>
+    <h5> Interested buyers will contact you through your email associated with your <%= link_to "account", current_user %>. </h5> 
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="span6 offset3">
+        <%= form_for(@game, :html => {:class => "form-horizontal"} ) do |f| %>
+    
+          <div class="form-group">
+            <%= f.label :title,  :class => "col-sm-2 control-label"%>
+            <div class="col-sm-6">
+              <%= f.text_field :title, :class => "form-control", :placeholder => "Game Title..." %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :console, :class => "col-sm-2 control-label" %>
+            <div class="col-sm-4">
+            <select class="form-control" name="game[console]" type="text">
+              <option value="" selected="disabled">Select a Console</option>
+              <option value="PS4">PS4</option>
+              <option value="Xbox One">Xbox One</option>
+              <option value="Wii U">Wii U</option>
+              <option value="PS3">PS3</option>
+              <option value="Xbox 360">Xbox 360</option>
+              <option value="Wii">Wii</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :condition, :class => "col-sm-2 control-label" %>
+            <div class="col-sm-4">
+            <select class="form-control" name="game[condition]" type="text">
+              <option value="" selected="disabled">Select Condition</option>
+              <option value="Like New">Like New ~ ( Hardly ever played )</option>
+              <option value="Good">Good ~ ( Works fine, no scratches )</option>
+              <option value="Works">Works ~ ( Slightly damaged but works okay )</option>
+              <option value="Coaster">Coaster ~ ( This game needs serious repair )</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :asking_price,  :class => "col-sm-2 control-label"%>
+            <div class="col-sm-offset-2  col-sm-4 input-group">
+              <span class="input-group-addon">$</span>
+              <input type="number" name="game[ask_price]" class="form-control" id="asking_price" placeholder="Price" data-min="0" data-max="9999999">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :notes, :class => "col-sm-2 control-label" %>
+            <div class="col-sm-offset-2 col-sm-4 input-group">
+              <textarea class="form-control" name="game[notes]" rows="3"></textarea>
+            </div>
+          </div>
+
+           <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-4 input-group">
+              <input type="checkbox" value="1" name="game[original_packaging]">
+              Is the game in the original packaging?
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <%= f.submit "Post Game for Sale!", class: "btn btn-large btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

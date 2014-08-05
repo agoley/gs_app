@@ -41,12 +41,6 @@ class UsersController < ApplicationController
     if ( user_params[:admin] && !@user.admin? ) 
       @user.toggle!(:admin)
     end
-#    if(user_params[:admin] == 0 || user_params[:admin] == nil)
-#       puts "AGHHHHHHHHHHHHHHHHHH"
-#       if @user.admin?
-#	 @user.toggle!(:admin)
-#       end
-#    end
     if user_params[:admin].to_s <=> "0"
       if @user.admin?
         @user.toggle!(:admin)
