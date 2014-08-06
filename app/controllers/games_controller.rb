@@ -10,10 +10,10 @@ class GamesController < ApplicationController
     @game.seller_id = current_user.id
     if @game.save
       flash[:success] = "Your game was succesfully posted."
-      redirect_to root_path
+      redirect_to @game
     else
       puts " ****************************GAME FAILED TO SAVE*********************"
-      flash.now[:danger] = 'Failed to save'
+      flash.now[:danger] = 'Failed to save, check that you have entered a title, and console.'
       render 'new'
     end
   end
