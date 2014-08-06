@@ -7,3 +7,13 @@ function toggle_visibility(id) {
 }
 
 
+function fileExists(url) {
+    if(url){
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+        req.send();
+        return req.status==200;
+    } else {
+        return false;
+    }
+}

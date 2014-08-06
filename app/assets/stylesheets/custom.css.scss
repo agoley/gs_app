@@ -13,6 +13,28 @@
 }
 $grayLighter: eee;
 
+.list-inline-games {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
+.list-inline-games > li {
+  display: inline-block;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.consolepic {
+  width: 125px;
+  height: 125px;
+}
+
+
+.gamecover {
+  width: 100px;
+  height: 135px;
+}
 
 /* Spinner */
 

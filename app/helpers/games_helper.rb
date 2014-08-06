@@ -1,8 +1,26 @@
+require 'rubygems'
+require 'net/http'
+require 'net/https'
+
 module GamesHelper
-  def gravatar_for_game(game, options = { size: 50 })
-    gravatar_id = Digest::MD5::hexdigest(game.title.downcase)
-    size = options[:size]
-    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: game.title, class: "gravatar")
-   end
+# Returns an image for the given game.
+  def image_for(game)
+    game_console_id = game.console.downcase.sub(/\s/, '_')
+    game_console_id = game_console_id.prepend("_")
+    game_image_id = game_console_id.prepend(game.title.sub(/\s/, '_').downcase).sub(/\s/, '_')
+    image_url = "https://s3.amazonaws.com/gs_game_covers/#{game_image_id}.jpeg"
+
+    uri = URI(image_url)
+
+    request = Net::HTTP.new uri.host
+    response= request.request_head uri.path
+
+    if ( response.code == "200" ) then
+      image_tag(image_url, alt: game.title, class: "gamecover")
+    else
+      game_console_id = game.console.downcase.sub(/\s/, '_')
+      image_url = "https://s3.amazonaws.com/gs_game_covers/#{game_console_id}.jpeg"
+      image_tag(image_url, alt: game.title, class: "consolepic")
+    end
+  end
 end

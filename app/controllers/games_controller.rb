@@ -22,6 +22,10 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
+  def index
+    @games = Game.paginate(page: params[:page])
+  end
+
   private
     def signed_in_user
       unless signed_in?
