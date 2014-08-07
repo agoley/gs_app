@@ -31,7 +31,8 @@ class GamesController < ApplicationController
       end
     else
       redirect_to upload_path
-      flash[:danger] = "We've never heard of that game, please check the spelling and try again."
+      flash[:danger] = "We've never heard of that game, please check the spelling and try again. 
+      If you are entering a real game and getting this message please let us know at help@gameswap.com."
     end
   end
 
