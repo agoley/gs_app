@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'net/http'
+require 'net/https'
+
 class GamesController < ApplicationController
    before_action :signed_in_user, only: [:new]
 
@@ -8,13 +12,26 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.seller_id = current_user.id
-    if @game.save
-      flash[:success] = "Your game was succesfully posted."
-      redirect_to @game
+    gamerevolution_title = @game.title.downcase.gsub(/[ ]/, '-')
+    url = "http://www.gamerevolution.com/game/#{gamerevolution_title}"
+    puts url
+    uri = URI(url)
+
+    request = Net::HTTP.new uri.host
+    response= request.request_head uri.path
+    puts "RESPONE CODE = " + response.code.to_s
+    game_exists = if (response.code == "200") then true else false end
+    if game_exists
+      if @game.save
+        flash[:success] = "Your game was succesfully posted."
+        redirect_to @game
+      else
+        redirect_to upload_path
+        flash[:danger] = "Failed to save, make sure you have entered a title and a console."
+      end
     else
-      puts " ****************************GAME FAILED TO SAVE*********************"
-      flash.now[:danger] = 'Failed to save, check that you have entered a title, and console.'
-      render 'new'
+      redirect_to upload_path
+      flash[:danger] = "We've never heard of that game, please check the spelling and try again."
     end
   end
 
