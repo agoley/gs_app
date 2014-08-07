@@ -12,7 +12,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.seller_id = current_user.id
-    gamerevolution_title = @game.title.downcase.gsub(/[ ]/, '-')
+    gamerevolution_title = @game.title.downcase.gsub(/[ ]/, '-').gsub(/[:.,'"!#$%^*()?<>\/]/, '')
     url = "http://www.gamerevolution.com/game/#{gamerevolution_title}"
     puts url
     uri = URI(url)

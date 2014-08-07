@@ -5,9 +5,9 @@ require 'net/https'
 module GamesHelper
 # Returns an image for the given game.
   def image_for(game)
-    game_console_id = game.console.downcase.sub(/\s/, '_')
+    game_console_id = game.console.downcase.gsub(/\s/, '_')
     game_console_id = game_console_id.prepend("_")
-    game_image_id = game_console_id.prepend(game.title.sub(/\s/, '_').downcase).sub(/\s/, '_')
+    game_image_id = game_console_id.prepend(game.title.gsub(/\s/, '_').downcase).gsub(/[:.,'"!#$%^*()?<>\/]/, '')
     image_url = "https://s3.amazonaws.com/gs_game_covers/#{game_image_id}.jpeg"
 
     uri = URI(image_url)
