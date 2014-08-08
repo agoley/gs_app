@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'net/http'
 require 'net/https'
+require 'open-uri'
 
 class GamesController < ApplicationController
    before_action :signed_in_user, only: [:new]
@@ -20,8 +21,36 @@ class GamesController < ApplicationController
     request = Net::HTTP.new uri.host
     response= request.request_head uri.path
     puts "RESPONE CODE = " + response.code.to_s
+
     game_exists = if (response.code == "200") then true else false end
     if game_exists
+
+      # Scrape valuable data from site
+      genre = 'not found'
+      publisher = 'not found'
+      developer = 'not found'
+      previous = ""
+      open(url) do |file|
+        file.each_line do |line|
+          if previous =~ /(.*)GENRE(.*)/ 
+            # Found the genre line, now grab the genre
+            genre = line.gsub(/<td class="gameinfotd black">/, '')
+            genre.gsub!(/&nbsp;<\/td>/, '')
+          end 
+          if previous =~ /(.*)PUBLISHER(.*)/
+            publisher = line.gsub(/<td class="gameinfotd black">/, '')
+            publisher.gsub!(/&nbsp;<\/td>/, '')
+          end
+          if previous =~ /(.*)DEVELOPER(.*)/
+            developer = line.gsub(/<td class="gameinfotd black">/, '')
+            developer.gsub!(/&nbsp;<\/td>/, '')
+          end
+          previous = line 
+        end
+      end
+      @game.genre = genre
+      @game.publisher = publisher
+      @game.developer = developer
       if @game.save
         flash[:success] = "Your game was succesfully posted."
         redirect_to @game
@@ -31,7 +60,8 @@ class GamesController < ApplicationController
       end
     else
       redirect_to upload_path
-      flash[:danger] = "We've never heard of that game, please check the spelling and try again. 
+      flash[:danger] = "We've never heard of that game, please check the spelling and enter the full 
+      title as it is on the cover. 
       If you are entering a real game and getting this message please let us know at help@gameswap.com."
     end
   end
@@ -54,7 +84,7 @@ class GamesController < ApplicationController
 
    def game_params
       params.require(:game).permit(:title, :console, :condition, :ask_price,
-                                   :notes, :original_packaging)
+                                   :notes, :original_packaging, :genre)
     end
 
 
