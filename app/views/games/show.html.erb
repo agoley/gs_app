@@ -2,10 +2,10 @@
 <h3>
   <%= image_for @game %>
   <%= @game.title %>
-</h3> 
-<h5>
-  <%= @game.console %>
-</h5>
-<h4><%= @game.genre %></h4>
-<h4><%= @game.publisher %></h4>
-<h4><%= @game.developer %></h4>
+</h3>
+<div class="row"> 
+<h5>Console: <small><%= @game.console %></small></h5>
+<h5>Type: <small><%= @game.genre %></small></h5>
+<h5>Publisher: <small><%= @game.publisher %></small></h5>
+<h5>Developer: <small><%= @game.developer %></small></h5>
+</div>
