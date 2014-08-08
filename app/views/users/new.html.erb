@@ -1,4 +1,5 @@
 <% provide(:title, 'Sign up') %>
+<div class="container">
 <!-- <a href="#" onclick="toggle_visibility('signup');">Don't have an account? Sign up here.</a> -->
  <%= render 'shared/error_messages' %>
 <div >
@@ -21,6 +22,7 @@
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %>
 
-    <%= f.submit "Sign up for GTN!", class: "btn btn-large btn-primary" %>
+    <%= f.submit "Start Trading!", class: "btn btn-large btn-primary" %>
   <% end %>
+</div>
 </div>
