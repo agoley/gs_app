@@ -1,3 +1,7 @@
+require "net/http"
+require 'net/https'
+require "uri"
+
 class StaticPagesController < ApplicationController
   def home
   end
@@ -6,6 +10,13 @@ class StaticPagesController < ApplicationController
   end
 
   def about
+  end
+
+  def twitter_signin
+    uri = URI.parse("https://api.twitter.com/oauth/request_token")
+    https = Net::HTTP.new(uri.host,uri.port)
+    https.use_ssl = true
+    req = Net::HTTP::Post.new(uri.path)
   end
 
     def current_user

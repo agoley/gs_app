@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :games
   resources :sessions, only: [:new, :create, :destroy]
   root 'static_pages#home'
+  match '/twitter-signin', to: 'users#twitter_signin', via: 'get'
   match '/browse', to: 'games#index', via: 'get'
   match '/upload', to: 'games#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'

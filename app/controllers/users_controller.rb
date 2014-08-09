@@ -1,7 +1,15 @@
+require "net/http"
+require 'net/https'
+require "uri"
+
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
+
+  def twitter_signup
+  end
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
@@ -64,6 +72,19 @@ class UsersController < ApplicationController
   end 
 
   private
+
+    def prepare_access_token(oauth_token, oauth_token_secret)
+      consumer = OAuth::Consumer.new("APIKey", "APISecret",
+      { :site => "https://api.twitter.com",
+        :scheme => :header
+      })
+      # now create the access token object from passed values
+      token_hash = { :oauth_token => oauth_token,
+                 :oauth_token_secret => oauth_token_secret
+                   }
+      access_token = OAuth::AccessToken.from_hash(consumer, token_hash )
+      return access_token
+    end
 
     def user_params
       params.require(:user).permit(:admin, :name, :email, :password,
